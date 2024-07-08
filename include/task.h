@@ -40,7 +40,7 @@ typedef struct task_struct {
 
 extern pid_t now_pid;
 char kern_stack[STACK_SIZE];
-uint32_t kern_stack_top;
+
 extern tcb_t *running_task_head;
 extern tcb_t *wait_task_head;
 extern tcb_t *current;

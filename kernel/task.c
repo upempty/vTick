@@ -6,6 +6,8 @@
 #include "../include/tty.h"
 #include "../include/gdt.h"
 
+
+
 void switch_pgd(uint32_t pd)
 {
     asm volatile ("mov %0, %%cr3" : : "r"(pd));
@@ -69,7 +71,7 @@ int32_t getpid()
 
 void init_dispatcher()
 {
-    current = (tcb_t *)(kern_stack_top - STACK_SIZE);
+    current = (tcb_t *)kern_stack;
     current->state = TASK_RUNNABLE;
     current->pid = now_pid++;
     set_task_name(current, "idletask");

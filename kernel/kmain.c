@@ -10,15 +10,9 @@ void kern_start()
 {
     /* if clear, then will overwrite 'Enter PM mode log', 
     *  should be expected behaviour.*/
-    //kclear_tty(); 
-    //to refactor this stack init.
-    kern_stack_top = ((uint32_t)kern_stack + STACK_SIZE) & 0xFFFFFFF0;
-    asm volatile ("mov %0, %%esp\n\t"
-            "xor %%ebp, %%ebp" : : "r" (kern_stack_top));
-            
+    //kclear_tty();
     kprint_at("Welcome Fred, you are in kernel now, step back!\n", 10, 0);
 
-    //to debug
     kheap_init();
        kprint_at("Welcome Fred, you are in kernel now, Heap!\n", 11, 0);
     mm_paging_init();
